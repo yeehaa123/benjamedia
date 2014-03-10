@@ -1,0 +1,23 @@
+{
+  "name": "benjamedia",
+  "version": "0.0.1",
+  "authors": [
+    "Yeehaa <medialoperations@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "underscore": "~1.6.0",
+    "d3": "~3.4.3",
+    "css-toggle-switch": "~2.1.5"
+  }
+}

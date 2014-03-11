@@ -59,9 +59,6 @@ window.sortWords = (config) ->
     if censored
       i if i in blacklist
 
-  console.log(censoredSortedWordsIndex.reverse())
-
-
   sortedWords = censoredSortedWordsIndex.reverse().map (word) ->
     temp = {}
     temp.text = word

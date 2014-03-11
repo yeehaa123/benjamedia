@@ -47,7 +47,6 @@
         }
       }
     });
-    console.log(censoredSortedWordsIndex.reverse());
     sortedWords = censoredSortedWordsIndex.reverse().map(function(word) {
       var temp;
       temp = {};

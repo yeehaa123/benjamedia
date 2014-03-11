@@ -1,5 +1,5 @@
 (function() {
-  var draw, fill, height, init, width;
+  var callAPI, docs, draw, fill, height, init, queryString, width;
 
   fill = d3.scale.category20();
 
@@ -32,8 +32,27 @@
     });
   };
 
+  docs = [];
+
+  callAPI = function(i) {
+    return d3.json("" + queryString + i, function(d) {
+      var docString, num_request;
+      num_request = Math.floor(d.response.meta.hits / 10);
+      docs = docs.concat(d.response.docs);
+      docString = JSON.stringify(docs);
+      localStorage.setItem('m', docString);
+      i = i + 1;
+      console.log("" + i + "/" + num_request);
+      if (!(i >= num_request)) {
+        return _.delay(callAPI, 100, i);
+      }
+    });
+  };
+
+  queryString = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=mississippi+flood&page=12&sort=oldest&api-key=0d7e2dcc3be1bc75d9f1c766fd313cc8:11:68747186&begin_date=19270101&end_date=19271231&page=";
+
   $(document).ready(function() {
-    var censored, data, maxWordFrequency, minWordFrequency;
+    var censored, data, i, maxWordFrequency, minWordFrequency;
     censored = true;
     minWordFrequency = $('label.minWordFrequency').find('input').val();
     maxWordFrequency = 60;
@@ -50,11 +69,14 @@
       censored = $(this).is(':checked');
       return init(data());
     });
-    return $('.word-frequency').on('change keyup', 'input', function(e) {
+    $('.word-frequency').on('change keyup', 'input', function(e) {
       minWordFrequency = $('.word-frequency .min').val();
       maxWordFrequency = $('.word-frequency .max').val();
       return init(data());
     });
+    i = 0;
+    localStorage.clear('m');
+    return callAPI(i);
   });
 
 }).call(this);

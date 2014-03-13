@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <script src="js/app.min.js"></script>
+  <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+  <link rel="stylesheet" href="toggle-switch.css">
+</head>
+<title>{{ title }}</title>
+<body>
+  <div id="cloud"></div>
+  <label class="switch-light switch-candy"> 
+    <input type="checkbox" checked="checked">
+    <span>
+       Censored 
+       <span>Off</span>
+       <span>On</span>
+    </span>
+    <a></a>
+  </label>
+  <label class="word-frequency">
+    minWordFrequency <input class="min" value="1" type="number"></input>
+  </label>
+  <label class="word-frequency">
+    maxWordFrequency <input class="max" value="60" type="number"></input>
+  </label>
+
+{{#markdown}}
+  {{> body}}
+{{/markdown}}
+</body>
+

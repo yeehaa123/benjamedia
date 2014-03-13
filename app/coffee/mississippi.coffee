@@ -1,3 +1,4 @@
+db = ""
 fill = d3.scale.category20();
 
 width = 900
@@ -38,10 +39,12 @@ draw = (words) ->
 docs = []
 
 callAPI = (i) ->
+  db = new Firebase('https://mississippi.firebaseio.com/')
   d3.json "#{queryString}#{i}", (d) ->
     num_request = Math.floor d.response.meta.hits / 10
     docs = docs.concat d.response.docs
     docString = JSON.stringify(docs)
+    db.set(docs)
     localStorage.setItem('m', docString)
     i = i + 1
     console.log("#{i}/#{num_request}")
@@ -49,6 +52,7 @@ callAPI = (i) ->
       _.delay(callAPI, 100, i)
 
 queryString = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=mississippi+flood&page=12&sort=oldest&api-key=0d7e2dcc3be1bc75d9f1c766fd313cc8:11:68747186&begin_date=19270101&end_date=19271231&page="
+
 
 $(document).ready ->
   censored = true

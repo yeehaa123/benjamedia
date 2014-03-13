@@ -19,13 +19,13 @@ module.exports = (grunt) ->
         compiled: 'generated/compiled-coffee/**/*.js'
 
       data: 
-        src: ['data/*.{json,yml}']
+        src: ['app/data/*.{json,yml}']
 
       html:
-        src: ['docs/*.{hbs,md}']
+        src: ['app/docs/*.{hbs,md}']
 
       layouts:
-        src: ['layouts/default.hbs']
+        src: ['app/layouts/default.hbs']
 
     concat:
       app:
@@ -36,11 +36,18 @@ module.exports = (grunt) ->
         ]
 
     coffee:
-      compile:
+      compileClient:
         expand: true
         cwd: 'coffee'
-        src: '**/*.coffee'
+        src: 'app/**/*.coffee'
         dest: '<%= files.coffee.dest %>'
+        ext: '.js'
+
+      compileServer:
+        expand: true
+        cwd: 'server'
+        src: '**/*.coffee'
+        dest: ''
         ext: '.js'
 
     assemble:
@@ -84,3 +91,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'assemble'
 
   grunt.registerTask "default", ["assemble", "coffee", "concat", "watch"]
+  grunt.registerTask "heroku", ["assemble", "coffee", "concat"]

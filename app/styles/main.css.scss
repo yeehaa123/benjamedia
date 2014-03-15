@@ -1,0 +1,50 @@
+@import "./bourbon/bourbon";
+@import "./neat/neat";
+@import "./custom_mixins/custom_mixins";
+
+@import "./partials/_colors";
+@import "./partials/_fonts";
+
+@import "./partials/_base";
+
+@import "./partials/_header";
+@import "./partials/_menupanel";
+@import "./partials/_sidebar";
+@import "./partials/_footer";
+@import "./partials/_card";
+@import "./partials/_post";
+@import "./partials/_table";
+
+@import "./partials/_profile";
+@import "./partials/_snippet";
+@import "./partials/_topic";
+@import "./partials/_chart";
+@import "./partials/_slide";
+
+body {
+  position: relative;
+  overflow-x: hidden;
+
+  &.default {
+    left: 0;
+  }
+
+  @include media($medium) {
+    &.pushed {
+      left: em(230);
+      margin-left: em(8);
+      margin-right: 0;
+    }
+  }
+}
+
+.main {
+  padding: em(8) em(16);
+  @include row();
+
+  @include media($mobile){
+    padding: em(8);
+    padding-top: em(0);
+  }
+}
+

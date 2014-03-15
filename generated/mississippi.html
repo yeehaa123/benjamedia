@@ -3,27 +3,17 @@
 <head>
   <script src="js/app.min.js"></script>
   <link rel="stylesheet" href="toggle-switch.css">
+  <link href='http://fonts.googleapis.com/css?family=Abel|Codystar' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="import" href="./elements/cth-wordcloud.html"> 
 </head>
 <title>The Mississippi Flood of 1927</title>
 <body>
   <div id="cloud"></div>
-  <label class="switch-light switch-candy"> 
-    <input type="checkbox" checked="checked">
-    <span>
-       Censored 
-       <span>Off</span>
-       <span>On</span>
-    </span>
-    <a></a>
-  </label>
-  <label class="word-frequency">
-    minWordFrequency <input class="min" value="1" type="number"></input>
-  </label>
-  <label class="word-frequency">
-    maxWordFrequency <input class="max" value="60" type="number"></input>
-  </label>
 
-<p>If you throw open a map of the middle part of America and lay your eyes
+  <cth-wordcloud sourceText="test"></cth-wordcloud>
+
+  <p>If you throw open a map of the middle part of America and lay your eyes
 upon the Mississippi, this enormous, 5,000-kilometer-long river, what
 you’ll see is somewhat muddled and full of bends—but nevertheless, on
 the whole, you’ll note a sharp line running pretty clearly from north to
@@ -212,5 +202,14 @@ all that, then—the Ku Klux Klan and Judge Lynch and the other sinister
 figures who have peopled or people still the human wilderness of the
 Mississippi—another time.</p>
 
+  <script>
+    $(function(){
+      text = "";
+      var body = $('p').each(function(i,d) {
+        text += d.innerText;
+      });
+      $('cth-wordcloud').attr("sourceText", text);
+    });
+  </script>
 </body>
 

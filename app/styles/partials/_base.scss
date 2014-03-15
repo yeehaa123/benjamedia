@@ -1,0 +1,47 @@
+$max-width: em(1024);
+$mobile: new-breakpoint(max-width em(700) 10);
+$medium: new-breakpoint(max-width em(1500) 10);
+$large: new-breakpoint(min-width em(1500) 10);
+
+body {
+  @include outer-container;
+  background: $backgroundColor;
+  color: $textColor;
+  font-family: $baseFont;
+  line-height: em(24);
+  font-size: em(16);
+}
+h1, h2, h3, h4, h5, h5, p {
+  margin: 0;
+  font-weight: normal;
+}
+
+p {
+  margin-bottom: em(16);
+}
+
+ul, ol {
+  padding-left: em(20);
+
+  p {
+    margin-bottom: em(8);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $linkColor;
+
+  &:hover {
+    color: $accentColor;
+  }
+}
+
+.highlight {
+  padding: em(8px, 16px) em(24px, 16px);
+  background: $cardBackgroundColor;
+  box-shadow: inset -10px -10px 10px -5px $base03;
+  margin-bottom: em(16px, 16px);
+}
+
+

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <script src="js/app.min.js"></script>
+  <link rel="stylesheet" href="toggle-switch.css">
+  <link href='http://fonts.googleapis.com/css?family=Abel|Codystar' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="import" href="./elements/cth-wordcloud.html"> 
+</head>
+<title>{{ title }}</title>
+<body>
+  <div id="cloud"></div>
+
+  <cth-wordcloud sourceText="test"></cth-wordcloud>
+
+  {{#markdown}}
+    {{> body}}
+  {{/markdown}}
+  <script>
+    $(function(){
+      text = "";
+      var body = $('p').each(function(i,d) {
+        text += d.innerText;
+      });
+      $('cth-wordcloud').attr("sourceText", text);
+    });
+  </script>
+</body>
+

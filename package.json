@@ -15,7 +15,8 @@
     "assemble-contrib-contextual": "~0.1.3",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-coffee": "~0.10.1"
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-sass": "~0.11.0"
   },
   "dependencies": {
     "express": "~3.4.8"

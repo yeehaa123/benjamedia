@@ -1,0 +1,69 @@
+.presentation-card {
+  @include row;
+}
+.card {
+  @include span-columns(10);
+  @include omega();
+  @include row;
+  position: relative;
+  background-color: $cardBackgroundColor;
+  color: $cardTextColor;
+  padding: em(0);
+  margin-bottom: em(24);
+
+  &:not(:first-child) {
+    @include shift(2);
+    @include media($mobile){
+      @include shift(0);
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+
+  header, .label {
+    @include span-columns(3);
+    background-color: $base02;
+
+    @include media($mobile){
+      @include span-columns(10);
+      @include omega();
+      margin-bottom: em(16);
+    }
+
+    h1 {
+      font-size: em(18);
+      padding: em(8, 18) em(20, 18);
+      color: $labelTextColor;
+      text-align: center;
+    }
+
+    div {
+      color: $base02;
+      text-align: center;
+    }
+  }
+
+  section {
+    @include shift(3);
+    padding: em(16) em(36) em(16) em(0);
+
+    a {
+      color: $cardLinkColor;
+
+      &:hover {
+        color: $accentColor;
+      }
+    }
+
+    @include media($mobile){
+      @include shift(0);
+      padding: em(16)
+    }
+  }
+  @include media($mobile){
+    @include span-columns(10);
+  }
+}

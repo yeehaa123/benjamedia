@@ -1,0 +1,36 @@
+.profile {
+  @include span-columns(10);
+  @include omega();
+  
+  &:not(:first-child) {
+    @include shift(2);
+  }
+  
+  .profile-picture {
+    overflow: hidden;
+    max-height: 360px;
+
+    img {
+      @include filter(sepia, 30%);
+      max-width: 100%;
+      min-width: 100%;
+
+      &:hover {
+        @include filter(sepia, 100%);
+      }
+    }
+  }
+ @include media($mobile){
+   @include span-columns(10);
+   @include shift(0);
+   
+   &:not(:first-child) {
+     @include shift(0);
+   }
+ 
+ }
+}
+
+.presentation-card {
+  margin-bottom: em(24, 16)
+}

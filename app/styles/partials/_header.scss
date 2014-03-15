@@ -1,0 +1,30 @@
+.site-header {
+  h1 {
+    font-family: $accentFont;
+    font-size: em(24, 16); 
+    margin-top: em(8, 24);
+    margin-bottom: em(8, 24); 
+    float: right;
+    letter-spacing: em(-1, 24);
+    @include media($mobile) {
+      font-size: em(20, 16);
+    }
+  }
+  @include clearfix;
+  
+  padding-left: em(15, 16);
+  padding-right: em(15, 16);
+  border-bottom: em(2, 16) solid $accentColor;
+  margin-bottom: em(8, 16);
+
+  .menu-button {
+    float: left;
+    @include media($large) {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $red;
+    }
+  }
+}

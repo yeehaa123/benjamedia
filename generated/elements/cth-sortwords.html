@@ -1,26 +1,13 @@
 <script src="./underscore.js"></script>
 <script src="./cth-sortwords.js"></script>
 
-<link rel="stylesheet" href="./toggle-switch.css">
+<link rel="import" href="./cth-switchlight.html">
 
 <polymer-element name="cth-sortwords" attributes="text">
-   <style>
-     label.switch-light {
-       width: 300px;
-       margin: 10px;
-     }
-   </style>
+
 
   <template>
-    <label class="switch-light switch-candy"> 
-      <input type="checkbox" checked="checked">
-      <span>
-         Censored 
-         <span>Off</span>
-         <span>On</span>
-      </span>
-      <a></a>
-    </label>
+    <cth-switchlight></cth-switchlight>
     <label class="word-frequency">
       minWordFrequency <input class="min" value="{{minValue}}" type="number"></input>
     </label>
@@ -36,7 +23,6 @@
     Polymer('cth-sortwords', {
       minValue: 2,
       maxValue: 5,
-      words: ["ha"],
       config: function(){
         return {
           minValue: this.minValue,
@@ -45,8 +31,7 @@
         };
       },
       countWords: function(){
-       var wordCount = cth.wordTools.sortWords(this.config());
-       this.words = wordCount;
+       this.words = cth.wordTools.sortWords(this.config());
       },
       textChanged: function(){
         this.countWords();

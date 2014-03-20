@@ -5,17 +5,13 @@
 <link rel="import" href="./cth-wordcount-table.html">
 
 <polymer-element name="cth-wordcloud" 
-                 attributes="sourceText">
+                 attributes="sourceText" noscript>
+
   <template>
     <cth-sortwords text="{{sourceText}}" 
-                   blacklist="{{blacklist}}"
                    sortedWords="{{sortedWords}}">
     </cth-sortwords>
     <cth-wordcount-table sortedWords="{{sortedWords}}"></cth-wordcount-table>
   </template>
-  <script>
-    Polymer('cth-wordcloud', {
-      blacklist: ["to", "and", "a"],
-    });
-  </script>
+
 </polymer-element>

@@ -1,7 +1,7 @@
 <script src="./cth-sortwords.js"></script>
-<script src="./cth-blacklist.js"></script>
 
 <link rel="import" href="./cth-sortwords-controlbar.html">
+<link rel="import" href="./cth-blacklist.html">
 
 <polymer-element name="cth-sortwords" attributes="text blacklist sortedWords">
 
@@ -10,6 +10,7 @@
                               minValue="{{minValue}}"
                               maxValue="{{maxValue}}">
     </cth-sortwords-controlbar>
+    <cth-blacklist blacklist="{{blacklist}}"></cth-blacklist>
   </template>
 
   <script>
@@ -19,7 +20,7 @@
           minValue: this.minValue,
           maxValue: this.maxValue,
           text: this.text,
-          blacklist: cth.wordTools.blacklist(),
+          blacklist: this.blacklist,
           censored: this.censored
         };
       },
@@ -30,7 +31,8 @@
         text: 'countWords',
         minValue: 'countWords',
         maxValue: 'countWords',
-        censored: 'countWords'
+        censored: 'countWords',
+        blacklist: 'countWords'
       }
     });
   </script>

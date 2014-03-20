@@ -12,15 +12,15 @@
           <th>Count</th>
           <th>Words</th>
         </tr>
-      <thead>
+      </thead>
       <tbody>
       <template repeat="{{ group in groupedWords}}">
         <tr>
-          <td>{{group.count}}</td>
+          <td>{{ group.count }}</td>
           <td class="words"><template repeat="{{word in group.words}}">{{word.text}}<br/></template></td>
         </tr>
       </template>
-      <tbody>
+      </tbody>
     </table>
   </template>
   <script>

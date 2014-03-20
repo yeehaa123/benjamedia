@@ -7,12 +7,20 @@
   </style>
   <template>
     <table>
+      <thead>
+        <tr>
+          <th>Count</th>
+          <th>Words</th>
+        </tr>
+      </thead>
+      <tbody>
       <template repeat="{{ group in groupedWords}}">
         <tr>
           <td>{{ group.count }}</td>
           <td class="words"><template repeat="{{word in group.words}}">{{word.text}}<br/></template></td>
         </tr>
       </template>
+      </tbody>
     </table>
   </template>
   <script>

@@ -47,7 +47,7 @@ cth.wordTools.sortWords= function() {
         word = word.toLowerCase();
         if (_.has(wordsObject, word)) {
           wordsObject[word] += 1;
-        } else {
+        } else if (word) {
           wordsObject[word] = 1;
         }
       });

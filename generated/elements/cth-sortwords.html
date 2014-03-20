@@ -3,11 +3,10 @@
 
 <link rel="import" href="./cth-switchlight.html">
 
-<polymer-element name="cth-sortwords" attributes="text">
-
+<polymer-element name="cth-sortwords" attributes="text blacklist">
 
   <template>
-    <cth-switchlight></cth-switchlight>
+    <cth-switchlight checked="{{censored}}"></cth-switchlight>
     <label class="word-frequency">
       minWordFrequency <input class="min" value="{{minValue}}" type="number"></input>
     </label>
@@ -23,11 +22,14 @@
     Polymer('cth-sortwords', {
       minValue: 2,
       maxValue: 5,
+      censored: false,
       config: function(){
         return {
           minValue: this.minValue,
           maxValue: this.maxValue,
-          text: this.text
+          text: this.text,
+          blacklist: this.blacklist,
+          censored: this.censored
         };
       },
       countWords: function(){
@@ -40,6 +42,9 @@
         this.countWords();
       },
       maxValueChanged: function() {
+        this.countWords();
+      },
+      censoredChanged: function() {
         this.countWords();
       }
     });

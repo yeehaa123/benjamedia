@@ -2,8 +2,13 @@
 <link rel="import" href="./cth-sortwords.html">
 
 <polymer-element name="cth-wordcloud" 
-                 attributes="sourceText" noscript>
+                 attributes="sourceText">
   <template>
-    <cth-sortwords text="{{sourceText}}"></cth-sortwords>
+    <cth-sortwords text="{{sourceText}}" blacklist="{{blacklist}}"></cth-sortwords>
   </template>
+  <script>
+    Polymer('cth-wordcloud', {
+      blacklist: ["to", "and", "a"]
+    });
+  </script>
 </polymer-element>

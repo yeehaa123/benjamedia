@@ -1,11 +1,13 @@
 var cth = cth || {};
 
 cth.wordTools = function() {
-  var minValue, maxValue;
+  var minValue, maxValue, blacklist, censored;
   
   var sortWords = function(config){
-    minValue = config.minValue;
-    maxValue = config.maxValue;
+    minValue = config.minValue || 3;
+    maxValue = config.maxValue || 6;
+    censored = config.censored || false;
+    blacklist = config.blacklist || [];
 
     var text = config.text,
         cleanedText = cleanText(text),
@@ -14,7 +16,8 @@ cth.wordTools = function() {
         rawKeys = getKeys(rawWordsObject),
         sortedKeys = sortKeys(rawKeys, rawWordsObject),
         filteredKeys = filterWords(sortedKeys, rawWordsObject),
-        wordsObject = makeOutputObject(filteredKeys, rawWordsObject)
+        censoredKeys = censorWords(filteredKeys),
+        wordsObject = makeOutputObject(censoredKeys, rawWordsObject)
 
       return wordsObject
     },
@@ -40,7 +43,7 @@ cth.wordTools = function() {
       var wordsObject = [];
       text.forEach(function(word){
         word = word.toLowerCase();
-        if (wordsObject.propertyIsEnumerable(word)) {
+        if (_.has(wordsObject, word)) {
           wordsObject[word] += 1;
         } else {
           wordsObject[word] = 1;
@@ -50,19 +53,27 @@ cth.wordTools = function() {
     },
 
     getKeys = function(wordsObject){
-      return Object.keys(wordsObject)
+      return _.keys(wordsObject);
     },
 
     sortKeys = function(keys, words){
-      return keys.sort(function(a,b){
-        return words[b] - words[a];
-      });
+      return _.sortBy(keys, function(i) {
+        return words[i];
+      }).reverse();
     },
 
     filterWords = function(keys, words) {
       return _.reject(keys, function(i) {
         if (words[i] < minValue || words[i] > maxValue) {
           return i;
+        }
+      });
+    },
+
+    censorWords = function(keys) {
+      return _.reject(keys, function(key) {
+        if (censored && _.contains(blacklist, key)) {
+          return key;
         }
       });
     }

@@ -1,0 +1,35 @@
+<polymer-element name="cth-wordcount-table" 
+                 attributes="sortedWords">
+  <style>
+    .words {
+      -webkit-column-count: 3;
+    }
+  </style>
+  <template>
+    <table>
+      <template repeat="{{ group in groupedWords}}">
+        <tr>
+          <td>{{ group.count }}</td>
+          <td class="words"><template repeat="{{word in group.words}}">{{word.text}}<br/></template></td>
+        </tr>
+      </template>
+    </table>
+  </template>
+  <script>
+    Polymer('cth-wordcount-table', {
+      groupWords: function(){
+        temp = _.groupBy(this.sortedWords, 'size');
+        temp = _.map(temp, function(group, index){
+          return {
+            count: index,
+            words: group
+          }
+        });
+        this.groupedWords = temp.reverse();
+      },
+      sortedWordsChanged: function(){
+        this.groupWords()
+      }
+    });
+  </script>
+</polymer-element>

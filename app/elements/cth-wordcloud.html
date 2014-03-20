@@ -1,14 +1,21 @@
+<script src="./underscore.js"></script>
+
 <link rel="import" href="./library/polymer.html">
 <link rel="import" href="./cth-sortwords.html">
+<link rel="import" href="./cth-wordcount-table.html">
 
 <polymer-element name="cth-wordcloud" 
                  attributes="sourceText">
   <template>
-    <cth-sortwords text="{{sourceText}}" blacklist="{{blacklist}}"></cth-sortwords>
+    <cth-sortwords text="{{sourceText}}" 
+                   blacklist="{{blacklist}}"
+                   sortedWords="{{sortedWords}}">
+    </cth-sortwords>
+    <cth-wordcount-table sortedWords="{{sortedWords}}"></cth-wordcount-table>
   </template>
   <script>
     Polymer('cth-wordcloud', {
-      blacklist: ["to", "and", "a"]
+      blacklist: ["to", "and", "a"],
     });
   </script>
 </polymer-element>

@@ -1,6 +1,8 @@
 var cth = cth || {};
 
-cth.wordTools = function() {
+cth.wordTools = cth.wordTools || {};
+
+cth.wordTools.sortWords= function() {
   var minValue, maxValue, blacklist, censored;
   
   var sortWords = function(config){
@@ -78,8 +80,6 @@ cth.wordTools = function() {
       });
     }
 
-  return {
-    sortWords: sortWords
-  }
+  return sortWords;
 
 }()

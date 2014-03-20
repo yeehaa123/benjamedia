@@ -1,0 +1,18 @@
+<polymer-element name="cth-minmax-select" 
+                 attributes="minValue maxValue" noscript>
+  <style>
+    label {
+      float: right;
+    }
+  </style>
+
+  <template>
+    <label class="word-frequency">
+      maxWordFrequency <input class="max" value="{{maxValue}}" type="number"></input>
+    </label>
+    <label class="word-frequency">
+      minWordFrequency <input class="min" value="{{minValue}}" type="number"></input>
+    </label>
+  </template>
+
+</polymer-element>

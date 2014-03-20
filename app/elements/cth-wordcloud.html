@@ -1,78 +1,9 @@
 <link rel="import" href="./library/polymer.html">
+<link rel="import" href="./cth-sortwords.html">
 
 <polymer-element name="cth-wordcloud" 
-                 attributes="sourceText">
+                 attributes="sourceText" noscript>
   <template>
-    <label class="switch-light switch-candy"> 
-      <input type="checkbox" checked="checked">
-      <span>
-         Censored 
-         <span>Off</span>
-         <span>On</span>
-      </span>
-      <a></a>
-    </label>
-    <label class="word-frequency">
-      minWordFrequency <input class="min" value="{{minValue}}" type="number"></input>
-    </label>
-    <label class="word-frequency">
-      maxWordFrequency <input class="max" value="{{maxValue}}" type="number"></input>
-    </label>
+    <cth-sortwords text="{{sourceText}}"></cth-sortwords>
   </template>
-  <script>
-    Polymer('cth-wordcloud', {
-      sortWords: function(){
-        var cleanText, splitText, rawWordsObject, rawKeys, sortKeys, sortedWords;
-        cleanText = this.cleanText(this.sourceText);
-        splitText = this.splitText(cleanText);
-        rawWordsObject = this.rawWordsObject(splitText);
-        rawKeys = this.rawKeys(rawWordsObject);
-        sortedKeys = this.sortKeys(rawKeys, rawWordsObject);
-        sortedWords = this.sortedWords(sortedKeys, rawWordsObject);
-        console.log(sortedWords);
-      },
-      cleanText: function(text){
-        return text.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-      },
-      rawKeys: function(wordsObject){
-        return Object.keys(wordsObject)
-      },
-      sortedWords: function(keys, words){
-        return keys.map(function(word){
-          var temp = {};
-          temp.text = word;
-          temp.size = words[word];
-          return temp;
-        });
-      },
-      sortKeys: function(keys, words){
-        return keys.sort(function(a,b){
-          return words[b] - words[a];
-        });
-      },
-      splitText: function(text){
-        return text.split(" ") 
-      },
-      rawWordsObject: function(text){
-        var wordsObject = [];
-        text.forEach(function(word){
-          word = word.toLowerCase();
-          if (wordsObject.propertyIsEnumerable(word)) {
-            wordsObject[word] += 1;
-          } else {
-            wordsObject[word] = 1;
-          }
-        });
-        return wordsObject
-      },
-      minValue: 2,
-      maxValue: 5,
-      ready: function() {
-        this.sortWords();
-      },
-      sourceTextChanged: function(){
-        this.sortWords();
-      }
-    });
-  </script>
 </polymer-element>

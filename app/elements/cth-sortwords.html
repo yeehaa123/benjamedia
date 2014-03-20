@@ -1,0 +1,63 @@
+<script src="./underscore.js"></script>
+<script src="./cth-sortwords.js"></script>
+
+<link rel="stylesheet" href="./toggle-switch.css">
+
+<polymer-element name="cth-sortwords" attributes="text">
+   <style>
+     label.switch-light {
+       width: 300px;
+       margin: 10px;
+     }
+   </style>
+
+  <template>
+    <label class="switch-light switch-candy"> 
+      <input type="checkbox" checked="checked">
+      <span>
+         Censored 
+         <span>Off</span>
+         <span>On</span>
+      </span>
+      <a></a>
+    </label>
+    <label class="word-frequency">
+      minWordFrequency <input class="min" value="{{minValue}}" type="number"></input>
+    </label>
+    <label class="word-frequency">
+      maxWordFrequency <input class="max" value="{{maxValue}}" type="number"></input>
+    </label>
+    <template repeat="{{ word in words}}">
+      <p>{{ word.text }} - {{ word.size }}</p>
+    </template>
+  </template>
+
+  <script>
+    Polymer('cth-sortwords', {
+      minValue: 2,
+      maxValue: 5,
+      words: ["ha"],
+      config: function(){
+        return {
+          minValue: this.minValue,
+          maxValue: this.maxValue,
+          text: this.text
+        };
+      },
+      countWords: function(){
+       var wordCount = cth.wordTools.sortWords(this.config());
+       this.words = wordCount;
+      },
+      textChanged: function(){
+        this.countWords();
+      },
+      minValueChanged: function() {
+        this.countWords();
+      },
+      maxValueChanged: function() {
+        this.countWords();
+      }
+    });
+  </script>
+
+</polymer-element>

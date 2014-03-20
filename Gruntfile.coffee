@@ -33,7 +33,7 @@ module.exports = (grunt) ->
         src: ['app/layouts/polymer.hbs']
 
       webcomponents:
-        src: ['app/elements/**/*.html']
+        src: ['app/elements/**/*.{html,js}']
 
     concat:
       app:
@@ -111,7 +111,7 @@ module.exports = (grunt) ->
         tasks: ['assemble']
 
       webcomponents:
-        files: 'app/elements/**/*.html'
+        files: ['<%= files.webcomponents.src %>']
         tasks: ['copy']
 
   grunt.loadTasks "tasks"
